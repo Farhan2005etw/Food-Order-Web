@@ -1,0 +1,52 @@
+Notes
+
+Store Context Provider simplified in desi language
+
+1) . const [cartItems, setCartItems] = useState({});
+
+  const addToCart = (itemId) => {
+    if(!cartItems[itemId]) {
+      setCartItems(prev => ({
+        ...prev,
+        [itemId]: 1
+      }));
+    } else {
+      setCartItems(prev => ({
+        ...prev,
+        [itemId]: prev[itemId] + 1
+      }));
+    }
+  }
+
+In simple language => To cart items ka jo state banaya usko aap ek bag ki tarah soch sakte ho 
+aur jo add to cart woh items daalne ka login h
+
+Example => Aap kisi grocery shop par hain aur aapne apne bag me ek apple dala to aapke bag me ek item add ho gya h
+aur jo bag h woh h hamara state variable aur jo add to cart ka function h uski help se hamara apple bag me gya h 
+addToCart ki (itemId) arg se pata chalega ki product kya h aur uski (if condition) ka kaam ye h ki jo (itemId) ya 
+product hum daal rhe h woh agar us cart me nhi h to iska matlab woh pehli baar cart me aaya h aur aap ek baar me ek
+hi item apne bag me daal sakte ho iska matlab jo item aaya h us hi item ki quantity 1 kar di jayegi jisko likhne ka tarika
+ye h.
+
+           if(!cartItems[itemId]) {
+      setCartItems(prev => ({
+        ...prev,
+        [itemId]: 1
+      }));
+
+Example for else condition => else condition me condition ye h ki wahi product ya (itemId) aapke bag me pehle se hi maujood h.
+matlab ki aapne ek apple to bag me daal liya lekin ab aapko ek aur apple chahiye q ki apple sehat ke liye ache hote h to ab aap jab dubara
+apple bag me daloge to itemId ye product woh to already add h to aur code bas yahi pata ki aap ek item sirf ek baar le sakte h isliye yahan par humne jo
+prev array tha usko pehle liya usme wahi itemId jiski qyantity pehle sirf 1 thi usi qyantity me +1 kar diya aur prev data isliye dubara se liya q ki agar previos data 
+ke basis agar hum item add nhi karenge to woh item ki quantity ko dubara 1 par hi set kar dega.
+
+2) . const removeFromCart = (itemId) => {
+    setCartItems((prev) => ({...prev, [itemId]: prev[itemId] - 1}))
+  } 
+
+In Simple Language => Ab remove from cart par aate h removeFromCart function bhi itemId leta h matlab to dono hi function ko pehle apne product ke bare me batana hoga ki
+woh kaunsa item add karenge aur kaunsa remove to jo setCartItems h woh pehle prev as an argument lega q ki hame batana padega ki hum kisme change karenge jis array ke hame change karna h
+hamare case me prev array h to us me se woh itemId Dhundega jo aapne pass ki h aur us item cart se remove kardega agar qty 2 h to 1 karega aur 1 h 0 yani cart me item show nhi karega
+
+Example => Maan jo CartItem state variable jo aapka bag h usme aapne 2 apple dale yani aapne ek hi Id ke item ko 2 baar apne cart me add kiya ab aapne dekha ki ek apple to kharab h isliye aapne 
+1 apple ko apne bag se nikal diya aur ek hi apple ko apne bag me rehne diya matlab aapke cart me se ek item ki qty kam ho aur jo item aapne 2 baar add kiya tha usme se ek kam ho gya
