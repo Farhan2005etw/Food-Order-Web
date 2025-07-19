@@ -1,5 +1,12 @@
 .my-orders {
-  margin: 50px 0px;
+  margin: 50px 20px;
+}
+
+.my-orders h2 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
 }
 
 .my-orders .container {
@@ -10,71 +17,138 @@
 }
 
 .my-orders-order {
-  border: 1px solid tomato;
+  border: 1px solid #ff7f50;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 12px;
+  background-color: #fffaf5;
+  box-shadow: 0 0 10px rgba(255, 127, 80, 0.1);
 }
 
 .order-main-grid {
   display: grid;
-  grid-template-columns: 0.5fr 2fr 1fr 1fr 2fr 1fr;
-  align-items: center;
-  gap: 30px;
+  grid-template-columns: auto 1.8fr 1fr;
+  align-items: flex-start;
+  gap: 20px;
   font-size: 14px;
   color: #454545;
 }
 
 .order-main-grid img {
-  width: 50px;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
 }
 
 .order-items {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 12px;
+}
+
+.order-item-details {
+  background-color: #fff;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #f0f0f0;
+}
+
+.item-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+}
+
+.item-separator {
+  border: none;
+  border-top: 1px dashed #ddd;
+  margin: 8px 0 0;
 }
 
 .pizza-customization {
-  font-size: 12px;
+  font-size: 13px;
   color: #666;
   margin-top: 5px;
+  padding-left: 10px;
 }
 
-.pizza-customization p {
+.customization-title {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.customization-item {
   margin: 2px 0;
 }
 
-.order-main-grid p span {
-  color: tomato;
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
 }
 
-.order-main-grid p b {
-  font-weight: 500;
-  color: #454545;
+.order-amount {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2e2e2e;
 }
 
-.order-main-grid button {
+.order-items-count {
+  font-size: 13px;
+  color: #555;
+}
+
+.order-status {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #555;
+}
+
+.order-status span {
+  font-size: 14px;
+  color: #f65b5b;
+}
+
+.track-btn {
+  margin-top: 5px;
   border: none;
-  padding: 12px 0px;
-  border-radius: 4px;
-  background-color: #ffe1e1;
+  padding: 10px 16px;
+  border-radius: 6px;
+  background-color: #ff7f50;
+  color: #fff;
+  font-size: 13px;
   cursor: pointer;
-  color: #454545;
+  transition: 0.3s;
+}
+
+.track-btn:hover {
+  background-color: #e06435;
 }
 
 @media (max-width: 900px) {
   .order-main-grid {
-    grid-template-columns: 1fr 2fr 1fr;
-    row-gap: 10px;
+    grid-template-columns: 1fr;
+    font-size: 13px;
+    gap: 15px;
+  }
+
+  .order-summary {
+    align-items: flex-start;
+  }
+
+  .track-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .customization-title {
     font-size: 12px;
   }
-  
-  .order-main-grid button {
-    font-size: 10px;
-  }
-  
-  .pizza-customization {
-    font-size: 10px;
+
+  .customization-item {
+    font-size: 11px;
   }
 }
-

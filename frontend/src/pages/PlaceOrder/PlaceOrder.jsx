@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../context/StoreContext";
 import  {toast}  from 'react-toastify'
@@ -10,6 +10,21 @@ const PlaceOrder = () => {
     useContext(StoreContext);
 
   const navigate = useNavigate();
+
+    useEffect(() => {
+    if(!token) {
+      navigate('/cart')
+      toast.warn("Please Login First", {
+        theme: 'colored'
+      })
+    }else if (getTotalCartAmount() === 0) {
+      navigate('/cart')
+      toast.warn("Please Add Item for Order", {
+        theme: 'colored'
+      })
+    }
+
+  })
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -92,6 +107,9 @@ const handlePlaceOrder = async (event) => {
     console.log("Order Error:", error);
     alert("Something went wrong while placing the order.");
   }
+  const navigate = useNavigate()
+
+
 };
 
 
