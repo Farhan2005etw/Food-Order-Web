@@ -84,7 +84,7 @@ const MyOrder = () => {
                 <p className="order-status">
                   <span>&#x25cf;</span> <b>{order.status}</b>
                 </p>
-                <button className="track-btn">Track Order</button>
+                <button className="track-btn"  onClick={() => window.location.reload()} >Track Order</button>
               </div>
             </div>
           </div>

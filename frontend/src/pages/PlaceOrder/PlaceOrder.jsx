@@ -9,22 +9,7 @@ const PlaceOrder = () => {
   const { getTotalCartAmount, food_list, url, token, cartItems, clearCart  } =
     useContext(StoreContext);
 
-  const navigate = useNavigate();
 
-    useEffect(() => {
-    if(!token) {
-      navigate('/cart')
-      toast.warn("Please Login First", {
-        theme: 'colored'
-      })
-    }else if (getTotalCartAmount() === 0) {
-      navigate('/cart')
-      toast.warn("Please Add Item for Order", {
-        theme: 'colored'
-      })
-    }
-
-  })
 
   const [formData, setFormData] = useState({
     firstName: "",

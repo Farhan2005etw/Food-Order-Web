@@ -7,23 +7,18 @@ import userModel from "../models/userModel.js";
 const placeOrder = async (req, res) => {
   try {
     const { items, amount, address } = req.body;
-
     if (!items || !amount || !address) {
       return res.json({ success: false, message: "Missing Order Details" });
     }
-
     // const orderItems = Object.values(items); // because now items is an object with full customPizza data
-
     const newOrder = new orderModel({
       userId: req.userId,
       items, // directly use items
       amount,
       address,
     });
-
     await newOrder.save();
     await userModel.findByIdAndUpdate(req.userId, { cart: {} });
-
     res.json({
       success: true,
       message: "Order Placed Successfully with Cash on Delivery",
@@ -36,17 +31,16 @@ const placeOrder = async (req, res) => {
     });
   }
 };
+
 //user orders for frontend
 const userOrder = async (req, res)  => {
   try {
     const orders = await orderModel.find({userId:req.userId});
     res.json({success:true, data: orders})
-
   } catch (error) {
     console.log(error);
     res.json({success:false, message: "Error"})        
   }
-
 }
 
 //Listing Order for Admin Panel
@@ -57,9 +51,30 @@ const listOrders = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({succes:false, message:"Error"})
-        
+       
   }
+}
 
+// Get single order for bill printing
+const getSingleOrder = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    
+    if (!orderId) {
+      return res.json({ success: false, message: "Order ID is required" });
+    }
+
+    const order = await orderModel.findById(orderId);
+    
+    if (!order) {
+      return res.json({ success: false, message: "Order not found" });
+    }
+    
+    res.json({ success: true, data: order });
+  } catch (error) {
+    console.log("GET SINGLE ORDER ERROR:", error);
+    res.json({ success: false, message: "Error fetching order details" });
+  }
 }
 
 // api for updating order status
@@ -73,4 +88,4 @@ const updateStatus = async (req, res) => {
   }
 }
 
-export { placeOrder, userOrder, updateStatus, listOrders };
+export { placeOrder, userOrder, updateStatus, listOrders, getSingleOrder };

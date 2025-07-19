@@ -1,0 +1,287 @@
+.order-bill-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  min-height: 100vh;
+}
+
+.no-print {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.back-btn, .print-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.back-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.back-btn:hover {
+  background-color: #5a6268;
+}
+
+.print-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.print-btn:hover {
+  background-color: #0056b3;
+}
+
+.bill-content {
+  background: white;
+  padding: 30px;
+  border: 1px solid #ddd;
+  font-family: 'Courier New', monospace;
+}
+
+.bill-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bill-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.bill-header p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.bill-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bill-title h2 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+}
+
+.bill-title p {
+  margin: 2px 0;
+  font-size: 14px;
+}
+
+.customer-details {
+  margin-bottom: 20px;
+}
+
+.customer-details h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.customer-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.order-items {
+  margin-bottom: 20px;
+}
+
+.order-items h3 {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.items-table th,
+.items-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  font-size: 13px;
+}
+
+.items-table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.item-details strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.bill-pizza-customizations {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.customization-row {
+  margin: 2px 0;
+}
+
+.bill-summary {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #f8f9fa;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.summary-row.total {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.payment-details {
+  margin-bottom: 20px;
+}
+
+.payment-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.bill-footer {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.bill-footer p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 50px;
+  font-size: 18px;
+}
+
+.error {
+  color: #dc3545;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .order-bill-container {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+  }
+  
+  .bill-content {
+    border: none;
+    padding: 20px;
+    box-shadow: none;
+  }
+  
+  .items-table {
+    page-break-inside: avoid;
+  }
+  
+  .bill-summary {
+    page-break-inside: avoid;
+  }
+  
+  body {
+    font-size: 12px;
+  }
+  
+  .bill-header h1 {
+    font-size: 20px;
+  }
+  
+  .bill-title h2 {
+    font-size: 18px;
+  }
+  
+  .customer-details h3,
+  .order-items h3 {
+    font-size: 14px;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .order-bill-container {
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  .bill-content {
+    padding: 15px;
+  }
+  
+  .items-table {
+    font-size: 12px;
+  }
+  
+  .items-table th,
+  .items-table td {
+    padding: 6px;
+  }
+  
+  .no-print {
+    flex-direction: column;
+  }
+  
+  .back-btn, .print-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+/* Hide everything when printing except the bill */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .order-bill-container,
+  .order-bill-container * {
+    visibility: visible;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .order-bill-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40%;
+  }
+}
