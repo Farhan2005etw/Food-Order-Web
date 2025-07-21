@@ -28,7 +28,7 @@ const placeOrder = async (req, res) => {
     await sendNotification(
       adminFcmToken,
       "🛒 New Order Received",
-      `Order from user ${req.userId} - Amount ₹${amount}`
+      `Order from user ${address.firstName} - Amount ₹${amount}`
     );
 
     res.json({
