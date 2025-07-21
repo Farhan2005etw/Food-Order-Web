@@ -7,6 +7,7 @@ import { StoreContext } from '../context/StoreContext';
 
 const Navbar = ({setShowLogin}) => {
 
+  
   const [menu, setMenu] = useState("home");  
   const {getTotalCartAmount, token, setToken} = useContext(StoreContext)
   const navigate = useNavigate()
@@ -19,7 +20,7 @@ const Navbar = ({setShowLogin}) => {
   return (
     <div className='Navbar'>
       <Link to='/'>
-      <img src={assets.logo} alt='Logo' />
+      <img className='logo'  src={assets.logo} alt='Logo' />
       </Link>
       <ul className="navbar-menu">
         <Link to='/' onClick={() => setMenu("home")} className={menu==="home" ? "active" : ""}>home</Link>
@@ -27,7 +28,7 @@ const Navbar = ({setShowLogin}) => {
         <a href='#footer' onClick={() => setMenu("contact-us")} className={menu==="contact-us" ? "active" : ""}>contact us</a>
       </ul>
       <div className="navbar-right">
-        <img src={assets.search_icon} alt='Search' />
+        
         <div className="navbar-search-icon">
           <Link to='/cart'>
            <img src={assets.basket_icon} alt="" />

@@ -3,7 +3,7 @@ import './FoodItem.css';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 
-const FoodItem = ({ id, name, description, price, image, category }) => {
+const FoodItem = ({ id, name, description, price, image, category, subCategory }) => {
   const { 
     cartItems, 
     addToCart, 
@@ -14,7 +14,7 @@ const FoodItem = ({ id, name, description, price, image, category }) => {
 
   const handleAddClick = () => {
     if (category.toLowerCase() === 'pizza') {
-      openPizzaPopup({ id, name, description, price, image });
+      openPizzaPopup({ id, name, description, price, image, subCategory });
     } else {
       addToCart(id);
     }

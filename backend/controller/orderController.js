@@ -2,6 +2,8 @@ import { response } from "express";
 import foodModel from "../models/foodModel.js";
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
+import  sendNotification  from "../utils/sendNotification.js";
+
 
 //PLacing user order for frontend
 const placeOrder = async (req, res) => {
@@ -10,15 +12,25 @@ const placeOrder = async (req, res) => {
     if (!items || !amount || !address) {
       return res.json({ success: false, message: "Missing Order Details" });
     }
-    // const orderItems = Object.values(items); // because now items is an object with full customPizza data
+
     const newOrder = new orderModel({
       userId: req.userId,
-      items, // directly use items
+      items,
       amount,
       address,
     });
+
     await newOrder.save();
     await userModel.findByIdAndUpdate(req.userId, { cart: {} });
+    const adminFcmToken = "cFf8zUTIpbpaNP6SVAj_ok:APA91bHfI3x1y0XxXFeA2xLj0Y93GxdQJNAs9yppH0AbkjCprQK0K2Ngh29Ymr_44UD7BcHAssGdMwgvbA2Kfqh_JH4GI9Vm_oz8UPPEwXDYGa_2V9EOu1s"
+
+    // ✅ Send FCM Notification to Admin
+    await sendNotification(
+      adminFcmToken,
+      "🛒 New Order Received",
+      `Order from user ${req.userId} - Amount ₹${amount}`
+    );
+
     res.json({
       success: true,
       message: "Order Placed Successfully with Cash on Delivery",
@@ -31,6 +43,7 @@ const placeOrder = async (req, res) => {
     });
   }
 };
+
 
 //user orders for frontend
 const userOrder = async (req, res)  => {

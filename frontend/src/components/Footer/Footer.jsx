@@ -7,8 +7,8 @@ const Footer = () => {
     <div className='footer' id='footer'>
         <div className="footer-content">
             <div className="footer-content-left">
-                <img src={assets.logo} alt="Logo" />
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, odio itaque. Accusamus nihil doloribus reiciendis magnam consectetur ipsam soluta nisi autem non? Ad itaque unde tenetur commodi ea, similique eaque?</p>    
+                <img src={assets.logo} alt="Logo" className='logo' />
+                <p>MKD Suparmart, Ashok Nagar, Friends Colony, Etawah, Uttar Pradesh 206001</p>    
                 <div className="footer-social-icons">
                  <img src={assets.facebook_icon} alt="" />
             <img src={assets.twitter_icon} alt="" />
@@ -30,8 +30,8 @@ const Footer = () => {
             <div className="footer-content-center">
                <h2>Get In Touch</h2>
                 <ul>
-                    <li>+91-1234567890</li>
-                    <li>contact@tomato.com</li>
+                    <li>+91-8938009090</li>
+                    <li>contact@applespizza.com</li>
                 </ul>              
 
            </div>

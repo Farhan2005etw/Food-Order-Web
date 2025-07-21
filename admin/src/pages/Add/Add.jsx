@@ -11,7 +11,9 @@ const Add = ({url}) => {
     name:'',
     description:'',
     price:'',
-    category:'Salad'
+    category:'Select',
+    subCategory:'Select'
+
 
   })
 
@@ -28,7 +30,9 @@ const Add = ({url}) => {
     formData.append('description',data.description)        
     formData.append('price',Number(data.price))
     formData.append('image',image)         
-    formData.append('category',data.category)       
+    formData.append('category',data.category)    
+    formData.append('subCategory',data.subCategory)
+
     
     const response = await axios.post(`${url}/api/food/add`, formData);
     
@@ -37,7 +41,8 @@ const Add = ({url}) => {
     name:'',
     description:'',
     price:'',
-    category:'Salad'
+    category:'Select',
+    subCategory:'Select'
 
   })  
   setImage(false)
@@ -74,14 +79,29 @@ const Add = ({url}) => {
               <div className="add-category flex-col">
                 <p>Product Category</p>
                 <select onChange={onChangeHandler} name="category" >
+                  <option value="Select">Select</option>
                   <option value="Pizza">Pizza</option>
                   <option value="Garlic Bread">Garlic Bread</option>
                   <option value="Rolls">Rolls</option>
                   <option value="Pasta">Pasta</option>
-                  <option value="Desert">Desert</option>
-                  <option value="Sandwich">Sandwich</option>
-                  <option value="Cake">Cake</option>
+                  <option value="Combo">Combo</option>                 
                   <option value="Noodles">Noodles</option>
+                </select>
+              </div>
+              <div className="add-category flex-col">
+                <p>Product Sub Category</p>
+                <select onChange={onChangeHandler} name="subCategory" >
+                  <option value="Select">Select</option>
+                  <option value="Simply Veg">Simply Veg</option>
+                  <option value="Veg Treat">Veg Treat</option>
+                  <option value="Veg Special">Veg Special</option>
+                  <option value="Veg Feast Pizzas">Veg Feast Pizzas</option>
+                  <option value="Pizza Mania Veg Single">Pizza Mania Veg Single</option>
+                  <option value="Pizza Mania Veg Double">Pizza Mania Veg Double</option>
+                  <option value="Pizza Mania Veg Double Extra Cheese">Pizza Mania Veg Double Extra Cheese</option>
+                  <option value="Pasta">Pasta</option>
+                  <option value="Bread">Bread</option>
+                  <option value="Combination Set">Combination Set</option>
                 </select>
               </div>
               <div className="add-price flex-col">
